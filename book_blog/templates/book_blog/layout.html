@@ -52,29 +52,15 @@
 						<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'index' %}">Home</a></li>
 						<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'about' %}">About</a></li>
 						<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="">Random Post</a></li>
-						<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="">Contact</a></li>
+						<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'contact' %}">Contact</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 
 		<!-- Page Header -->
-
-		<!-- todo write a javascript to add a background image to the header:
-			style="background-image: url('assets/img/home-bg.jps'" -->
-
-		<header class="masthead">
-			<div class="container position-relative px-4 px-lg-5">
-				<div class="row gx-4 gx-lg-5 justify-content-center">
-					<div class="col-md-10 col-lg-8 col-xl-7">
-						<!-- <div class="site-heading">
-							<h1>{% block site_heading %}{% endblock %}</h1>
-						</div> -->
-						{% block headings %}{% endblock %}
-					</div>
-				</div>
-			</div>
-		</header>
+		{% block headings %}
+		{% endblock %}
 
 		<!-- Main Content -->
         <main>
@@ -124,5 +110,8 @@
 
 		<!-- core theme js -->
 		<script src="{% static 'book_blog/js/sripts.js' %}"></script>
+
+		<!-- page specific js -->
+		{% block script %}{% endblock %}
     </body>
 </html>

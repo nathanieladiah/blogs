@@ -25,3 +25,6 @@ def post(request, post_id):
 
 def about(request):
 	return render(request, "book_blog/about.html")
+
+def contact(request):
+	return render(request, "book_blog/contact.html")
