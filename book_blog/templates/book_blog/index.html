@@ -1,6 +1,67 @@
 {% extends 'book_blog/layout.html' %}
 {% load static %}
 
+{% block headings %}
+	<div class="site-heading">
+		<h1>Book Blog</h1>
+		<span class="subheading">A blog on writing</span>
+	</div>
+{% endblock %}
+
 {% block body %}
-	<p>Testing</p>
+	<div class="container px-4 px-lg-5">
+		<div class="row gx-4 gx-lg-5 justify-content-center">
+			<div class="col-md-10 col-lg-8 col-xl-7">
+				<!-- Post preview -->
+				<div class="post-preview">
+					<a href="#">
+						<h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
+						<h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
+					</a>
+					<p class="post-meta">
+						Posted by
+						<a href="#">Nathaniel Adiah</a>
+						on Nov 28, 2021
+					</p>
+				</div>
+				<!-- Divider -->
+				<hr class="my-4">
+
+				<!-- Post preview -->
+				<div class="post-preview">
+					<a href="#">
+						<h2 class="post-title">Science has not yet mastered prophecy</h2>
+						<h3 class="post-subtitle">We predict too much and far too little</h3>
+					</a>
+					<p class="post-meta">
+						Posted by 
+						<a href="#">Nathaniel Adiah</a>
+						on Nov 13, 2021
+					</p>
+				</div>
+
+				<!-- Divider -->
+				<hr class="my-4">
+
+				<!-- Post preview -->
+				<div class="post-preview">
+					<a href="#">
+						<h2 class="post-title">Failure is not an option</h2>
+						<h3 class="post-subtitle">Many say exploration is part of our destiny.</h3>
+					</a>
+					<p class="post-meta">
+						Posted by
+						<a href="#">Nathaniel Adiah</a>
+						on Jun 22, 2021
+					</p>
+				</div>
+
+				<!-- Divider -->
+				<hr class="my-4">
+
+				<!-- Pager -->
+				<div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#">Older Posts →</a></div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
