@@ -10,3 +10,10 @@ def index(request):
 	return render(request, "book_blog/index.html", {
 		'posts': posts
 	})
+
+def post(request, post_id):
+	post = Post.objects.get(pk=post_id)
+
+	return render(request, "book_blog/post.html", {
+		'post': post
+	})

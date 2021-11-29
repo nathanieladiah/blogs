@@ -61,7 +61,7 @@
 					<hr class="my-4">
 					<!-- Post preview -->
 					<div class="post-preview">
-						<a href="#">
+						<a href="{% url 'post' post.id %}">
 							<h2 class="post-title">{{ post.title }}</h2>
 							<h3 class="post-subtitle">{{ post.subtitle }}</h3>
 						</a>
