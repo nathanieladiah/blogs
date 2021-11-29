@@ -13,6 +13,7 @@ class Post(models.Model):
 	body = models.TextField()
 	date = models.DateField(default=date.today)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
+	coverpic = models.URLField(blank=True, null=True)
 
 	def __str__(self):
 		return self.title
