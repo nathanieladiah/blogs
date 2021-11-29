@@ -1,4 +1,7 @@
+from random import randint
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 
@@ -28,3 +31,9 @@ def about(request):
 
 def contact(request):
 	return render(request, "book_blog/contact.html")
+
+def random(request):
+	count = Post.objects.count()
+	random_post = Post.objects.all()[randint(0, count-1)]
+
+	return HttpResponseRedirect(reverse("post", args=(random_post.id,)))

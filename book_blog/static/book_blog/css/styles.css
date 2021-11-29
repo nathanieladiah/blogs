@@ -11191,13 +11191,14 @@ header.masthead .site-heading .h1 {
   }
 }
 
-.section-heading {
+.section-heading, 
+#post-body h2 {
   font-size: 2.25rem;
   font-weight: 700;
   margin-top: 3.75rem;
 }
 
-.caption {
+.caption, #post-body span {
   font-size: 0.875rem;
   font-style: italic;
   display: block;
