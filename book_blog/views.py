@@ -22,3 +22,6 @@ def post(request, post_id):
 	return render(request, "book_blog/post.html", {
 		'post': post
 	})
+
+def about(request):
+	return render(request, "book_blog/about.html")
