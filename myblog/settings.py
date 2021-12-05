@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'myblog',
     'book_blog',
     'authapp',
+    'cs50game',
 ]
 
 MIDDLEWARE = [
