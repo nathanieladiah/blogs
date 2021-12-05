@@ -27,12 +27,6 @@ def post(request, post_id):
 		'post': post
 	})
 
-def about(request):
-	return render(request, "book_blog/about.html")
-
-def contact(request):
-	return render(request, "book_blog/contact.html")
-
 def random(request):
 	count = Post.objects.count()
 	random_post = Post.objects.all()[randint(0, count-1)]
