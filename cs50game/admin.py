@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import CS50GPost
+from .models import Cs50gPost
 
 # Register your models here.
 
-admin.site.register(CS50GPost)
+admin.site.register(Cs50gPost)

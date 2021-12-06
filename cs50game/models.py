@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Each blog post must have a title, a subtitle, author, post date, and the
 # post content itself
 
-class CS50GPost(models.Model):
+class Cs50gPost(models.Model):
 	title = models.CharField(max_length=120)
 	subtitle = models.CharField(max_length=200)
 	body = models.TextField()
