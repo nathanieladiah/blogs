@@ -11281,3 +11281,14 @@ textarea.form-control-lg {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+#post-body p {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+#post-body h2 {
+  font-weight: bolder;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
+}
