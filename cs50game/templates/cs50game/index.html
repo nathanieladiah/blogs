@@ -16,7 +16,7 @@
 	<!-- Blog entries -->
 	<div class="col-lg-8">
 		<!-- Featured blog post -->
-		<div class="card mb-4">
+		<!-- <div class="card mb-4">
 			<a href="#"><img class="card-img-top" src="" alt=""></a>
 			<div class="card-body">
 				<div class="small text-muted">January 1, 2021</div>
@@ -24,11 +24,22 @@
 				<p class="card-text">Lorem ipsum do </p>
 				<a class="btn btn-primary" href="#">Read more</a>
 			</div>
-		</div>
+		</div> -->
+		{% if featured_post %}
+			<div class="card mb-4">
+				<a href="#"><img class="card-img-top" src="" alt=""></a>
+				<div class="card-body">
+					<div class="small text-muted">{{ featured_post.date }}</div>
+					<h2 class="card-title">{{ featured_post.title }}</h2>
+					<p class="card-text">{{ featured_post.subtitle }}</p>
+					<a class="btn btn-primary" href="#">Read more</a>
+				</div>
+			</div>
+		{% endif %}
 		<!-- Nested row for non-featured blog posts -->
 		<div class="row">
-			<div class="col-lg-6">
-				<!-- Blog post -->
+			<!-- <div class="col-lg-6">
+
 				<div class="card mb-4">
 					<a href="#"><img class="card-img-top" src="#" alt=""></a>
 					<div class="card-body">
@@ -38,29 +49,7 @@
 						<a class="btn btn-primary" href="#">Read more</a>
 					</div>
 				</div>
-				<!-- Blog post -->
-				<div class="card mb-4">
-					<a href="#"><img class="card-img-top" src="#" alt=""></a>
-					<div class="card-body">
-						<div class="small text-muted">January 1, 2021</div>
-						<h2 class="card-title h4">Post Title</h2>
-						<p class="card-text">Stuff</p>
-						<a class="btn btn-primary" href="#">Read more</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<!-- Blog post -->
-				<div class="card mb-4">
-					<a href="#"><img class="card-img-top" src="#" alt=""></a>
-					<div class="card-body">
-						<div class="small text-muted">January 1, 2021</div>
-						<h2 class="card-title h4">Post Title</h2>
-						<p class="card-text">Stuff</p>
-						<a class="btn btn-primary" href="#">Read more</a>
-					</div>
-				</div>
-				<!-- Blog post -->
+
 				<div class="card mb-4">
 					<a href="#"><img class="card-img-top" src="#" alt=""></a>
 					<div class="card-body">
@@ -71,6 +60,42 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-lg-6">
+
+				<div class="card mb-4">
+					<a href="#"><img class="card-img-top" src="#" alt=""></a>
+					<div class="card-body">
+						<div class="small text-muted">January 1, 2021</div>
+						<h2 class="card-title h4">Post Title</h2>
+						<p class="card-text">Stuff</p>
+						<a class="btn btn-primary" href="#">Read more</a>
+					</div>
+				</div>
+
+				<div class="card mb-4">
+					<a href="#"><img class="card-img-top" src="#" alt=""></a>
+					<div class="card-body">
+						<div class="small text-muted">January 1, 2021</div>
+						<h2 class="card-title h4">Post Title</h2>
+						<p class="card-text">Stuff</p>
+						<a class="btn btn-primary" href="#">Read more</a>
+					</div>
+				</div>
+			</div> -->
+			{% for post in posts %}
+				<div class="col-lg-6">
+					<!-- Blog post -->
+					<div class="card mb-4">
+						<a href="#"><img class="card-img-top" src="#" alt=""></a>
+						<div class="card-body">
+							<div class="small text-muted">{{ post.date }}</div>
+							<h2 class="card-title h4">{{ post.title }}</h2>
+							<p class="card-text">{{ post.subtitle }}</p>
+							<a class="btn btn-primary" href="#">Read more</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
 		</div>
 		<!-- Pagination -->
 		<nav aria-label="Pagination">
