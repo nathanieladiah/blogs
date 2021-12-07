@@ -18,5 +18,9 @@ def index(request):
 		'page_obj': page_obj
 	})
 
-def post(request):
-	return render(request, 'cs50game/post.html')
+def post(request, post_id):
+	post = Cs50gPost.objects.get(pk=post_id)
+
+	return render(request, 'cs50game/post.html', {
+		'post': post
+	})

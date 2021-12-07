@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 class Cs50gPost(models.Model):
 	title = models.CharField(max_length=120)
 	subtitle = models.CharField(max_length=200)
+	blurb = models.TextField()
 	body = models.TextField()
 	date = models.DateField(default=date.today)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)

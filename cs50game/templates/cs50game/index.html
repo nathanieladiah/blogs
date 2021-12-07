@@ -27,12 +27,12 @@
 		</div> -->
 		{% if featured_post %}
 			<div class="card mb-4">
-				<a href="#"><img class="card-img-top" src="" alt=""></a>
+				<a href="{% url 'cs50game-post' featured_post.id %}"><img class="card-img-top" src="{{ featured_post.coverpic }}" alt=""></a>
 				<div class="card-body">
 					<div class="small text-muted">{{ featured_post.date }}</div>
 					<h2 class="card-title">{{ featured_post.title }}</h2>
-					<p class="card-text">{{ featured_post.subtitle }}</p>
-					<a class="btn btn-primary" href="#">Read more</a>
+					<p class="card-text">{{ featured_post.blurb }}</p>
+					<a class="btn btn-primary" href="{% url 'cs50game-post' featured_post.id %}">Read more</a>
 				</div>
 			</div>
 		{% endif %}
@@ -86,12 +86,12 @@
 				<div class="col-lg-6">
 					<!-- Blog post -->
 					<div class="card mb-4">
-						<a href="#"><img class="card-img-top" src="#" alt=""></a>
+						<a href="{% url 'cs50game-post' post.id %}"><img class="card-img-top" src="{{ post.coverpic }}" alt=""></a>
 						<div class="card-body">
 							<div class="small text-muted">{{ post.date }}</div>
 							<h2 class="card-title h4">{{ post.title }}</h2>
-							<p class="card-text">{{ post.subtitle }}</p>
-							<a class="btn btn-primary" href="#">Read more</a>
+							<p class="card-text">{{ post.blurb }}</p>
+							<a class="btn btn-primary" href="{% url 'cs50game-post' post.id %}">Read more</a>
 						</div>
 					</div>
 				</div>
@@ -113,7 +113,7 @@
 				<li class="page-item"><a class="page-link" href="#">15</a></li> -->
 				{% for num in page_obj.paginator.page_range %}
 					{% if page_obj.number == num %}
-						<li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+						<li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
 					{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
 						<li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
 					{% endif %}
