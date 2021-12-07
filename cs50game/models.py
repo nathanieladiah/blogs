@@ -1,5 +1,6 @@
 from django.db import models
-from datetime import date
+from datetime import date, datetime
+from django.utils.timezone import now
 from django.contrib.auth.models import User
 
 # Each blog post must have a title, a subtitle, author, post date, and the
@@ -20,3 +21,10 @@ class Cs50gPost(models.Model):
 
 	def is_featured(self):
 		return self.featured
+
+class Comment(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	post = models.ForeignKey(Cs50gPost, related_name='comments', on_delete=models.CASCADE)
+	parent = models.ForeignKey('self', null=True, related_name='replies', on_delete=models.CASCADE)
+	body = models.CharField(max_length=500)
+	created = models.DateTimeField(default=now)
