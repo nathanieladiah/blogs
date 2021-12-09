@@ -1,0 +1,17 @@
+body {
+	background-image: url("../assets/img/bg-masthead.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1D809F;
+  border-color: #1D809F;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #196d87;
+  border-color: #17667f;
+}

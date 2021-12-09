@@ -24,7 +24,7 @@
         crossorigin="anonymous"> 
 
         <!-- Link to external css here -->
-        <!-- <link href="{% static 'network/styles.css' %}" rel="stylesheet"> -->
+        <link href="{% static 'auth/css/styles.css' %}" rel="stylesheet">
         {% block script %}
         {% endblock %}
 
@@ -32,28 +32,9 @@
 
     <body>
         <header>
-            <nav class="navbar navbar-expand-md navbar-light bg-primary">
+            <nav class="navbar navbar-expand-md navbar-light mb-5">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Nathaniel's Blogs<sup>TM</sup></a>
-                    <ul class="navbar-nav mr-auto">
-                        {% if user.is_authenticated %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><strong>{{ user.username }}</strong></a>
-                            </li>
-                        {% endif %}
-                        {% if user.is_authenticated %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-                            </li>
-                        {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'login' %}">Log In</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'register' %}">Register</a>
-                            </li>
-                        {% endif %}
-                    </ul>
+                    <a class="navbar-brand" href="{% url 'portfolio:index' %}">Nathaniel's Blogs</a>
 
                 </div>
             </nav>

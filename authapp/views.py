@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
@@ -29,7 +29,7 @@ def register(request):
 				"message": "Username already taken."
 			})
 		login(request, user)
-		return HttpResponseRedirect(reverse('index'))
+		return HttpResponseRedirect(reverse('portfolio:index'))
 	else:
 		return render(request, "authapp/register.html")
 
@@ -40,11 +40,16 @@ def login_view(request):
 		username = request.POST['username']
 		password = request.POST['password']
 		user = authenticate(request, username=username, password=password)
+		next_value = request.POST.get('next')
+		print(next_value)
 
 		# check if authentication is successful
 		if user is not None:
 			login(request, user)
-			return HttpResponseRedirect(reverse('index'))
+			if next_value == "":
+				return HttpResponseRedirect(reverse('portfolio:index'))
+			else:
+				return redirect(next_value)
 		else:
 			return render(request, 'authapp/login.html', {
 				"message": "Invalid username and/or password."
@@ -55,4 +60,4 @@ def login_view(request):
 
 def logout_view(request):
 	logout(request)
-	return HttpResponseRedirect(reverse('index'))
+	return HttpResponseRedirect(reverse('portfolio:index'))
