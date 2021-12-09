@@ -35,7 +35,17 @@
 			<div class="card bg-light">
 				<div class="card-body">
 					<!-- comment form -->
-					<form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
+					<form class="mb-4" method="post" action="{% url 'cs50game:comment' post.id %}">
+						{% csrf_token %}
+						<textarea id="new-comment-body" name="body" class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea>
+						<div class="row">
+							{% if user.is_authenticated %}
+								<button id="add-new-comment" class="col-md-2 offset-md-9 mt-2 btn btn-primary btn-sm" type="submit">Comment</button>
+							{% else %}
+								<button id="add-new-comment" class="col-md-2 offset-md-9 mt-2 btn btn-primary btn-sm" disabled type="button">Comment</button>
+							{% endif %}
+						</div>
+					</form>
 
 					<!-- comment with nested comments -->
 					<!-- <div class="d-flex mb-4">
@@ -75,7 +85,7 @@
 					</div> -->
 					{% for comment in post.comments.all %}
 						{% if not comment.parent %}
-							<div class="d-flex">
+							<div class="d-flex mb-4">
 								<div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt=""></div>
 								<div class="ms-3">
 									<div class="fw-bold">{{ comment.user.username }}</div>
@@ -93,8 +103,13 @@
 							</div>
 						{% endif %}
 					{% endfor %}
+					<!-- last comment doesn't need an mb-4 -->
 				</div>
 			</div>
 		</section>
 	</div>	
+{% endblock %}
+
+{% block js %}
+	<script src="{% static 'cs50game/js/comment.js' %}"></script>
 {% endblock %}

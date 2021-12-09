@@ -31,7 +31,7 @@ def random(request):
 	count = Post.objects.count()
 	random_post = Post.objects.all()[randint(0, count-1)]
 
-	return HttpResponseRedirect(reverse("post", args=(random_post.id,)))
+	return HttpResponseRedirect(reverse("book:post", args=(random_post.id,)))
 
 @user_passes_test(lambda u: u.is_superuser)
 def new_post(request):
@@ -43,6 +43,6 @@ def new_post(request):
 
 		post = Post(title=title, subtitle=subtitle, body=body, author=author)
 		post.save()
-		return HttpResponseRedirect(reverse('index'))
+		return HttpResponseRedirect(reverse('book:index'))
 
 	return render(request, "book_blog/new_post.html")

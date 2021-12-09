@@ -24,7 +24,9 @@ class Cs50gPost(models.Model):
 
 class Comment(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	post = models.ForeignKey(Cs50gPost, related_name='comments', on_delete=models.CASCADE)
-	parent = models.ForeignKey('self', null=True, related_name='replies', on_delete=models.CASCADE, blank=True)
+	post = models.ForeignKey(Cs50gPost, related_name='comments', 
+			on_delete=models.CASCADE)
+	parent = models.ForeignKey('self', null=True, related_name='replies', 
+			on_delete=models.CASCADE, blank=True)
 	body = models.CharField(max_length=500)
 	created = models.DateTimeField(default=now)

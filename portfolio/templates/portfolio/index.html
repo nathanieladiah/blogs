@@ -29,6 +29,13 @@
 			<li class="sidebar-nav-item"><a href="#about">About</a></li>
 			<li class="sidebar-nav-item"><a href="#portfolio">Portfolio</a></li>
 			<li class="sidebar-nav-item"><a href="#contact">Contact</a></li>
+			<hr>
+			{% if user.is_authenticated %}
+				<li class="sidebar-nav-item"><a href="{% url 'logout' %}">Log out</a></li>
+			{% else %}
+				<li class="sidebar-nav-item"><a href="{% url 'register' %}">Register</a></li>		
+				<li class="sidebar-nav-item"><a href="{% url 'login' %}">Log in</a></li>		
+			{% endif %}
 		</ul>
 	</nav>
 
@@ -67,7 +74,7 @@
 			</div>
 			<div class="row gx-0">
 				<div class="col-lg-6">
-					<a class="portfolio-item" href="{% url 'index' %}">
+					<a class="portfolio-item" href="{% url 'book:index' %}">
 						<div class="caption">
 							<div class="caption-content">
 								<div class="h2">Book Blog</div>
@@ -78,7 +85,7 @@
 					</a>
 				</div>
 				<div class="col-lg-6">
-					<a class="portfolio-item" href="{% url 'cs50game-index' %}">
+					<a class="portfolio-item" href="{% url 'cs50game:index' %}">
 						<div class="caption">
 							<div class="caption-content">
 								<div class="h2">cs50 blog</div>

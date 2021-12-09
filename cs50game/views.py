@@ -4,9 +4,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.core.paginator import Paginator
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import login_required, user_passes_test
 
-from .models import Cs50gPost
+from .models import Comment, Cs50gPost
 
 # Create your views here.
 def index(request):
@@ -34,7 +34,7 @@ def random(request):
 	count = Cs50gPost.objects.count()
 	random_post = Cs50gPost.objects.all()[randint(0, count-1)]
 
-	return HttpResponseRedirect(reverse("cs50game-post", args=(random_post.id,)))
+	return HttpResponseRedirect(reverse("cs50game:post", args=(random_post.id,)))
 
 @user_passes_test(lambda u: u.is_superuser)
 def new_post(request):
@@ -63,6 +63,17 @@ def new_post(request):
 		if featured:
 			post.featured = True
 			post.save()
-		return HttpResponseRedirect(reverse('cs50game-index'))
+		return HttpResponseRedirect(reverse('cs50game:index'))
 
 	return render(request, "cs50game/new_post.html")
+
+@login_required
+def comment(request, post_id):
+	if request.method == 'POST':
+		user = request.user
+		body = request.POST['body']
+		post = Cs50gPost.objects.get(pk=post_id)
+
+		comment = Comment(user=user, body=body, post=post)
+		comment.save() 
+		return HttpResponseRedirect(reverse('cs50game:post', args=(post_id, )))
