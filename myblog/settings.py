@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # DEBUG = True
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'TRUE')
 
-ALLOWED_HOSTS = ['nathanielsblogs.herokuapp.com']
+ALLOWED_HOSTS = ['nathanielsblogs.herokuapp.com', '0.0.0.0']
 
 
 # Application definition
@@ -41,12 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Third party
+    'phonenumber_field',
     # My apps
     'portfolio',
     'myblog',
     'book_blog',
     'authapp',
     'cs50game',
+    'contact',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +141,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/auth/login'
 
 django_heroku.settings(locals())
+
+DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_ACCOUNT')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.environ.get('EMAIL_ACCOUNT')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

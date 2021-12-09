@@ -22,4 +22,5 @@ urlpatterns = [
     path('book/', include("book_blog.urls")),
     path('auth/', include("authapp.urls")),
     path('cs50game/', include("cs50game.urls")),
+    path('contact/', include('contact.urls')),
 ]
