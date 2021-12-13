@@ -1,6 +1,8 @@
 {% extends 'cs50game/layout.html' %}
 {% load static %}
 
+{% block title %}{{ post.title }}{% endblock %}
+
 {% block main %}
 	{% load markdown_extras %}
 	<div class="col-lg-8">

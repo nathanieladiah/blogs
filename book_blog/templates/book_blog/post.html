@@ -1,6 +1,8 @@
 {% extends 'book_blog/layout.html' %}
 {% load static %}
 
+{% block title %}{{ post.title }}{% endblock %}
+
 {% block headings %}
 	<header class="masthead" style="background-image: url('{{ post.coverpic }}')">
 		<div class="container position-relative px-4 px-lg-5">

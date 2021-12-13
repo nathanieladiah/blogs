@@ -1,6 +1,8 @@
 {% extends 'cs50game/layout.html' %}
 {% load static %}
 
+{% block title %}New Post{% endblock %}
+
 {% block main %}
 	<div class="col-lg-8">
 		<form method="post" action="{% url 'cs50game:new_post' %}">
