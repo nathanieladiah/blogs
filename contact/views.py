@@ -21,3 +21,6 @@ def contact(request):
 		# Only save the contact if the message sends successfully.
 		contact.save() 
 		return render(request, 'contact/success.html')
+
+def success_page(request):
+	return render(request, 'contact/success.html')

@@ -15,3 +15,8 @@ body {
   background-color: #196d87;
   border-color: #17667f;
 }
+
+.btn-primary a {
+  text-decoration: none;
+  color: #fff;
+}
