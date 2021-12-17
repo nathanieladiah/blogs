@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'crispy_forms',
     'crispy_bootstrap5',
+    'ckeditor',
 
     # My apps
     'portfolio',
@@ -163,3 +164,11 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_ACCOUNT')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'basic',
+        'height': 300,
+        'width': '100%',
+    },
+}
