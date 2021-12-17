@@ -57,7 +57,7 @@ def new_post(request):
 		if form.is_valid:
 			form.save()
 
-			return redirect('index')
+			return redirect('book:index')
 
 	context = {'form': form}
 	return render(request, 'book_blog/post_form.html', context)

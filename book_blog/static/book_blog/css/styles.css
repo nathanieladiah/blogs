@@ -11238,6 +11238,11 @@ header.masthead .site-heading .h1 {
   }
 }
 
+/* Post form */
 .new-post {
   height: 100vh;
+}
+
+.django-ckeditor-widget {
+  width: 100%;
 }

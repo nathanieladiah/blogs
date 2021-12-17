@@ -167,7 +167,7 @@ EMAIL_USE_TLS = True
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'basic',
+        'toolbar': 'full',
         'height': 300,
         'width': '100%',
     },
