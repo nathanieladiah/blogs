@@ -3,25 +3,33 @@ from random import randint
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from .models import Comment, Cs50gPost
 
 # Create your views here.
 def index(request):
-	featured_post = Cs50gPost.objects.filter(featured=True).order_by('-featured').first()
-	posts = Cs50gPost.objects.order_by('-date').all()
+	# featured_count = Cs50gPost.objects.filter(featured=True).count()
+	featured_posts = Cs50gPost.objects.filter(featured=True)
+	count = len(featured_posts)
+	featured_post = featured_posts[randint(0, count-1)]
+
+	posts = Cs50gPost.objects.all().order_by('-date')
 
 	paginator = Paginator(posts, 4)
+	page = request.GET.get('page')
 
-	page_number = request.GET.get('page')
-	page_obj = paginator.get_page(page_number)
+	try:
+		posts = paginator.page(page)
+	except PageNotAnInteger:
+		posts = paginator.page(1)
+	except EmptyPage:
+		posts = paginator.page(paginator.num_pages)
+	
+	context = {'posts': posts, 'featured_post': featured_post}
 
-	return render(request, 'cs50game/index.html', {
-		'featured_post': featured_post,
-		'page_obj': page_obj
-	})
+	return render(request, 'cs50game/index.html', context)
 
 def post(request, post_id):
 	post = Cs50gPost.objects.get(pk=post_id)
