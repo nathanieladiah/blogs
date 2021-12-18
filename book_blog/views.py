@@ -11,7 +11,7 @@ from .forms import PostForm
 
 # Create your views here.
 def index(request):
-	posts = Post.objects.order_by('-date').all()
+	posts = Post.objects.order_by('-created').all()
 	paginator = Paginator(posts, 5)
 
 	page_number = request.GET.get('page')
@@ -21,8 +21,8 @@ def index(request):
 		'page_obj': page_obj
 	})
 
-def post(request, post_id):
-	post = Post.objects.get(pk=post_id)
+def post(request, slug):
+	post = Post.objects.get(slug=slug)
 
 	return render(request, "book_blog/post.html", {
 		'post': post
