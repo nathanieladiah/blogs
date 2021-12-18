@@ -1,12 +1,13 @@
 from random import randint
 
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from .models import Comment, Cs50gPost
+from . forms import PostForm
 
 # Create your views here.
 def index(request):
@@ -44,36 +45,52 @@ def random(request):
 
 	return HttpResponseRedirect(reverse("cs50game:post", args=(random_post.id,)))
 
+# @user_passes_test(lambda u: u.is_superuser)
+# def new_post(request):
+# 	if request.method == 'POST':
+# 		title = request.POST['title']
+# 		subtitle = request.POST['subtitle']
+# 		blurb = request.POST['blurb']
+# 		body = request.POST['body']
+# 		coverpic = request.POST['coverpic']
+# 		author = request.user
+
+# 		# if request.POST['featured']:
+# 		# 	featured = request.POST['featured']
+# 		# 	print(featured)
+
+# 		try:
+# 			featured = request.POST['featured']
+# 		except:
+# 			featured = False
+
+# 		# print(featured)
+
+# 		post = Cs50gPost(title=title, subtitle=subtitle, body=body, 
+# 			author=author, blurb=blurb, coverpic=coverpic)
+# 		post.save()
+# 		if featured:
+# 			post.featured = True
+# 			post.save()
+# 		return HttpResponseRedirect(reverse('cs50game:index'))
+
+# 	return render(request, "cs50game/new_post.html")
+
 @user_passes_test(lambda u: u.is_superuser)
 def new_post(request):
+	form = PostForm()
+
 	if request.method == 'POST':
-		title = request.POST['title']
-		subtitle = request.POST['subtitle']
-		blurb = request.POST['blurb']
-		body = request.POST['body']
-		coverpic = request.POST['coverpic']
-		author = request.user
-
-		# if request.POST['featured']:
-		# 	featured = request.POST['featured']
-		# 	print(featured)
-
-		try:
-			featured = request.POST['featured']
-		except:
-			featured = False
-
-		# print(featured)
-
-		post = Cs50gPost(title=title, subtitle=subtitle, body=body, 
-			author=author, blurb=blurb, coverpic=coverpic)
-		post.save()
-		if featured:
-			post.featured = True
+		form = PostForm(request.POST)
+		if form.is_valid:
+			post = form.save(commit=False)
+			post.author = request.user
 			post.save()
-		return HttpResponseRedirect(reverse('cs50game:index'))
 
-	return render(request, "cs50game/new_post.html")
+			return redirect('cs50game:index')
+
+	context = {'form': form}
+	return render(request, 'cs50game/post_form.html', context)
 
 @login_required
 def comment(request, post_id):
