@@ -55,7 +55,10 @@ def new_post(request):
 	if request.method == 'POST':
 		form = PostForm(request.POST)
 		if form.is_valid:
-			form.save()
+			# form.save()
+			post = form.save(commit=False)
+			post.author = request.user
+			post.save()
 
 			return redirect('book:index')
 
