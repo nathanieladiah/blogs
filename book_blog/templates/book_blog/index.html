@@ -80,7 +80,7 @@
 						<p class="post-meta">
 							Posted by
 							<a href="#">{{ post.author.username}}</a>
-							on {{ post.created}}
+							on {{ post.created|date:"M j, Y" }}
 						</p>
 						{% if user.is_superuser %}
 							<div class="post-buttons">
