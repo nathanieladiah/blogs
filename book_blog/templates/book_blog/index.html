@@ -82,6 +82,12 @@
 							<a href="#">{{ post.author.username}}</a>
 							on {{ post.created}}
 						</p>
+						{% if user.is_superuser %}
+							<div class="post-buttons">
+								<button type="button" class="btn btn-sm btn-primary"><a href="{% url 'book:edit_post' post.slug %}">Edit</a></button>
+								<button type="button" class="btn btn-sm btn-danger"><a href="{% url 'book:delete_post' post.slug %}">Delete</a></button>
+							</div>
+						{% endif %}
 					</div>
 
 					<!-- Divider -->
