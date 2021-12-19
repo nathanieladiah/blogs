@@ -20,12 +20,12 @@
 	<!-- Featured blog post -->
 	{% if featured_post %}
 		<div class="card mb-4">
-			<a href="#"><img class="card-img-top" src="{{ featured_post.coverpic }}" alt=""></a>
+			<a href="{% url 'techblog:post' featured_post.slug %}"><img class="card-img-top" src="{{ featured_post.coverpic }}" alt=""></a>
 			<div class="card-body">
 				<div class="small text-muted">{{ featured_post.date }}</div>
 				<h2 class="card-title">{{ featured_post.title }}</h2>
 				<p class="card-text">{{ featured_post.subtitle }}</p>
-				<a class="btn btn-primary" href="#">Read more</a>
+				<a class="btn btn-primary" href="{% url 'techblog:post' featured_post.slug %}">Read more</a>
 				{% if user.is_superuser %}
 					<a class="btn btn-success" href="#">Edit</a>
 					<a class="btn btn-danger" href="#">Delete</a>	
@@ -40,12 +40,12 @@
 			<div class="col-lg-6">
 				<!-- Blog post -->
 				<div class="card mb-4">
-					<a href="#"><img class="card-img-top" src="{{ post.coverpic }}" alt=""></a>
+					<a href="{% url 'techblog:post' post.slug %}"><img class="card-img-top" src="{{ post.coverpic }}" alt=""></a>
 					<div class="card-body">
-						<div class="small text-muted">{{ post.created }}</div>
+						<div class="small text-muted">{{ post.created|date:"F j, Y" }}</div>
 						<h2 class="card-title h4">{{ post.title }}</h2>
 						<p class="card-text">{{ post.subtitle }}</p>
-						<a class="btn btn-primary" href="#">Read more</a>
+						<a class="btn btn-primary" href="{% url 'techblog:post' post.slug %}">Read more</a>
 						{% if user.is_superuser %}
 							<a class="btn btn-success" href="#">Edit</a>
 							<a class="btn btn-danger" href="#">Delete</a>	

@@ -1,0 +1,38 @@
+{% extends 'techblog/layout.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block main %}
+	{% load markdown_extras %}
+	<!-- Post content -->
+	<article>
+		<!-- Post header -->
+		<header class="mb-4">
+			<!-- Post title -->
+			<h1 class="fw-bolder mb-1">{{ post.title }}</h1>
+			<!-- Post meta content -->
+			<div class="text-muted fst-italic mb-2">Posted on {{ post.created|date:"F j, Y" }} by {{ post.author }}</div>
+			<!-- Post categories -->
+			{% for tag in post.tech_tags.all %}
+				<a class="badge bg-secondary text-decoration-none link-light" href="#">{{ category.name }}</a>
+			{% endfor %}
+			{% if user.is_superuser %}
+			<div class="post-buttons mt-3">
+				<a class="btn btn-success btn-sm" href="#">Edit</a>
+				<a class="btn btn-danger btn-sm" href="E">Delete</a>	
+			</div>
+			{% endif %}	
+		</header>
+		<!-- Preview image figure -->
+		<figure class="mb-4"><img class="img-fluid rounded" src="{{ post.coverpic }}" alt=""></figure>
+		<!-- Post content -->
+		<section class="mb-5" id="post-body">
+			{{ post.body | markdown |safe}}
+		</section>
+	</article>
+{% endblock %}
+
+{% block js %}
+	<script src="{% static 'cs50game/js/comment.js' %}"></script>
+{% endblock %}

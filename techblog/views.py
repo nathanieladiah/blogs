@@ -22,5 +22,10 @@ def index(request):
 		posts = paginator.page(paginator.num_pages)
 	
 	context = {'posts': posts, 'featured_post': featured_post}
-
 	return render(request, 'techblog/index.html', context)
+
+def post(request, slug):
+	post = TechPost.objects.get(slug=slug)
+
+	context={'post': post}
+	return render(request, 'techblog/post.html', context)
