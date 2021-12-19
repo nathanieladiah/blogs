@@ -20,7 +20,7 @@
 				<p class="card-text">{{ featured_post.subtitle }}</p>
 				<a class="btn btn-primary" href="{% url 'techblog:post' featured_post.slug %}">Read more</a>
 				{% if user.is_superuser %}
-					<a class="btn btn-success" href="#">Edit</a>
+					<a class="btn btn-success" href="{% url 'techblog:edit_post' featured_post.slug %}">Edit</a>
 					<a class="btn btn-danger" href="#">Delete</a>	
 				{% endif %}
 			</div>
@@ -40,7 +40,7 @@
 						<p class="card-text">{{ post.subtitle }}</p>
 						<a class="btn btn-primary" href="{% url 'techblog:post' post.slug %}">Read more</a>
 						{% if user.is_superuser %}
-							<a class="btn btn-success" href="#">Edit</a>
+							<a class="btn btn-success" href="{% url 'techblog:edit_post' post.slug %}">Edit</a>
 							<a class="btn btn-danger" href="#">Delete</a>	
 						{% endif %}
 					</div>

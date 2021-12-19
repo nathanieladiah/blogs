@@ -13,4 +13,5 @@ urlpatterns = [
 
 	# CRUD paths
 	path("new/", views.new_post, name="new_post"),
+	path("edit/<slug:slug>/", views.edit_post, name="edit_post"),
 ]

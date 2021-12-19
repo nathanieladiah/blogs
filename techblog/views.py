@@ -100,3 +100,19 @@ def new_post(request):
 
 	context = {'form': form}
 	return render(request, 'techblog/post_form.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def edit_post(request, slug):
+	post = TechPost.objects.get(slug=slug)
+	form = TechPostForm(instance=post)
+
+	if request.method == 'POST':
+		form = TechPostForm(request.POST, instance=post)
+		if form.is_valid:
+			form.save()
+
+			return redirect('techblog:index')
+
+	context = {'form': form}
+	return render(request, 'techblog/post_form.html', context)
