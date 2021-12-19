@@ -77,6 +77,17 @@ def edit_post(request, slug):
 	context = {'form': form}
 	return render(request, 'cs50game/post_form.html', context)
 
+@user_passes_test(lambda u: u.is_superuser)
+def delete_post(request, slug):
+	post = Cs50gPost.objects.get(slug=slug)
+
+	if request.method == 'POST':
+		post.delete()
+		return redirect('cs50game:index')
+
+	context = {'item': post}
+	return render(request, 'cs50game/delete.html', context)
+
 @login_required
 def comment(request, post_id):
 	if request.method == 'POST':

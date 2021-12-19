@@ -37,7 +37,7 @@
 					<a class="btn btn-primary" href="{% url 'cs50game:post' featured_post.id %}">Read more</a>
 					{% if user.is_superuser %}
 						<a class="btn btn-success" href="{% url 'cs50game:edit_post' featured_post.slug %}">Edit</a>
-						<a class="btn btn-danger" href="#">Delete</a>	
+						<a class="btn btn-danger" href="{% url 'cs50game:delete_post' featured_post.slug %}">Delete</a>	
 					{% endif %}
 				</div>
 			</div>
@@ -100,7 +100,7 @@
 							<a class="btn btn-primary" href="{% url 'cs50game:post' post.id %}">Read more</a>
 							{% if user.is_superuser %}
 								<a class="btn btn-success" href="{% url 'cs50game:edit_post' post.slug %}">Edit</a>
-								<a class="btn btn-danger" href="#">Delete</a>	
+								<a class="btn btn-danger" href="{% url 'cs50game:delete_post' post.slug %}">Delete</a>	
 							{% endif %}
 						</div>
 					</div>
