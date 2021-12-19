@@ -27,7 +27,7 @@
 						<div class="card-body">
 							<div class="small text-muted">{{ post.date }}</div>
 							<h2 class="card-title h4">{{ post.title }}</h2>
-							<p class="card-text">{{ post.blurb }}</p>
+							<p class="card-text">{{ post.subtitle }}</p>
 							<a class="btn btn-primary" href="{% url 'cs50game:post' post.slug %}">Read more</a>
 							{% if user.is_superuser %}
 								<a class="btn btn-success" href="{% url 'cs50game:edit_post' post.slug %}">Edit</a>

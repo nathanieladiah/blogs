@@ -8,7 +8,7 @@ class PostForm(ModelForm):
 	class Meta:
 		model = Cs50gPost
 		# fields = '__all__'
-		fields = ['title', 'subtitle', 'coverpic', 'featured', 'blurb', 'body', 
+		fields = ['title', 'subtitle', 'coverpic', 'featured', 'body', 
 					'categories'
 		]
 

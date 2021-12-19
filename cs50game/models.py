@@ -16,7 +16,7 @@ class Category(models.Model):
 class Cs50gPost(models.Model):
 	title = models.CharField(max_length=120)
 	subtitle = models.CharField(blank=True, null=True, max_length=200)
-	blurb = models.TextField(blank=True, null=True)
+	# blurb = models.TextField(blank=True, null=True)
 	body = models.TextField()
 	date = models.DateField(default=date.today)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
