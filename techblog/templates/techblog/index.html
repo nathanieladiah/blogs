@@ -1,7 +1,7 @@
 {% extends 'techblog/layout.html' %}
 {% load static %}
 
-{% block title %}CS50 Blog{% endblock %}
+{% block title %}Tech blog{% endblock %}
 
 {% block header %}
 	<header class="py-5 bg-light border-bottom mb-4" id="blog-heading">
@@ -20,15 +20,15 @@
 	<!-- Featured blog post -->
 	{% if featured_post %}
 		<div class="card mb-4">
-			<a href="{% url 'cs50game:post' featured_post.slug %}"><img class="card-img-top" src="{{ featured_post.coverpic }}" alt=""></a>
+			<a href="#"><img class="card-img-top" src="{{ featured_post.coverpic }}" alt=""></a>
 			<div class="card-body">
 				<div class="small text-muted">{{ featured_post.date }}</div>
 				<h2 class="card-title">{{ featured_post.title }}</h2>
 				<p class="card-text">{{ featured_post.subtitle }}</p>
-				<a class="btn btn-primary" href="{% url 'cs50game:post' featured_post.slug %}">Read more</a>
+				<a class="btn btn-primary" href="#">Read more</a>
 				{% if user.is_superuser %}
-					<a class="btn btn-success" href="{% url 'cs50game:edit_post' featured_post.slug %}">Edit</a>
-					<a class="btn btn-danger" href="{% url 'cs50game:delete_post' featured_post.slug %}">Delete</a>	
+					<a class="btn btn-success" href="#">Edit</a>
+					<a class="btn btn-danger" href="#">Delete</a>	
 				{% endif %}
 			</div>
 		</div>
@@ -40,15 +40,15 @@
 			<div class="col-lg-6">
 				<!-- Blog post -->
 				<div class="card mb-4">
-					<a href="{% url 'cs50game:post' post.slug %}"><img class="card-img-top" src="{{ post.coverpic }}" alt=""></a>
+					<a href="#"><img class="card-img-top" src="{{ post.coverpic }}" alt=""></a>
 					<div class="card-body">
-						<div class="small text-muted">{{ post.date }}</div>
+						<div class="small text-muted">{{ post.created }}</div>
 						<h2 class="card-title h4">{{ post.title }}</h2>
 						<p class="card-text">{{ post.subtitle }}</p>
-						<a class="btn btn-primary" href="{% url 'cs50game:post' post.slug %}">Read more</a>
+						<a class="btn btn-primary" href="#">Read more</a>
 						{% if user.is_superuser %}
-							<a class="btn btn-success" href="{% url 'cs50game:edit_post' post.slug %}">Edit</a>
-							<a class="btn btn-danger" href="{% url 'cs50game:delete_post' post.slug %}">Delete</a>	
+							<a class="btn btn-success" href="#">Edit</a>
+							<a class="btn btn-danger" href="#">Delete</a>	
 						{% endif %}
 					</div>
 				</div>

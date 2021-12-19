@@ -72,8 +72,8 @@
 					<div class="card-header">Categories</div>
 					<div class="card-body">
 						<div class="row">
-							{% for category in categories %}
-							<a class="col-sm-6" href="#">{{ category.name }}</a>
+							{% for tag in tech_tags %}
+								<a class="col-sm-6" href="#">{{ tag.name }}</a>
 							{% endfor %}
 						</div>
 					</div>
