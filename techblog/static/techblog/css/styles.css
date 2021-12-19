@@ -11275,6 +11275,8 @@ textarea.form-control-lg {
   }
 }
 
+/* My css */
+
 #blog-heading {
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../assets/img/blog-heading.jpg");
   background-position: center center;
