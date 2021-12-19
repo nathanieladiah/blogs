@@ -49,6 +49,16 @@ def random(request):
 def categories(request, category):
 	posts = Cs50gPost.objects.filter(categories__name=category)
 
+	paginator = Paginator(posts, 6)
+	page = request.GET.get('page')
+
+	try:
+		posts = paginator.page(page)
+	except PageNotAnInteger:
+		posts = paginator.page(1)
+	except EmptyPage:
+		posts = paginator.page(paginator.num_pages)
+
 	context = {'posts': posts, 'category': category}
 	return render(request, 'cs50game/categories.html', context)
 
@@ -60,8 +70,18 @@ def search(request):
 	else:
 		# No query entered, return all objects
 		results = Cs50gPost.objects.all()
+
+	paginator = Paginator(results, 6)
+	page = request.GET.get('page')
+
+	try:
+		posts = paginator.page(page)
+	except PageNotAnInteger:
+		posts = paginator.page(1)
+	except EmptyPage:
+		posts = paginator.page(paginator.num_pages)
 	
-	context = {'posts': results}
+	context = {'posts': posts}
 
 	return render(request, 'cs50game/search_results.html', context)
 
