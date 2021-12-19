@@ -55,5 +55,5 @@ def search(request):
 	except EmptyPage:
 		posts = paginator.page(paginator.num_pages)
 	
-	context = {'posts': posts}
+	context = {'posts': posts, 'query':query}
 	return render(request, 'techblog/search_results.html', context)
