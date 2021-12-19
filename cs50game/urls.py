@@ -4,7 +4,7 @@ from . import views
 app_name = 'cs50game'
 urlpatterns = [
 	path("", views.index, name="index"),
-	path("post/<int:post_id>", views.post, name="post"),
+	path("post/<slug:slug>/", views.post, name="post"),
 	path("random", views.random, name="random"),
 
 	# CRUD Paths

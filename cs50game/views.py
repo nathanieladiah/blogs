@@ -33,8 +33,8 @@ def index(request):
 
 	return render(request, 'cs50game/index.html', context)
 
-def post(request, post_id):
-	post = Cs50gPost.objects.get(pk=post_id)
+def post(request, slug):
+	post = Cs50gPost.objects.get(slug=slug)
 
 	return render(request, 'cs50game/post.html', {
 		'post': post

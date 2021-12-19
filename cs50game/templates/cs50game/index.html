@@ -29,12 +29,12 @@
 		</div> -->
 		{% if featured_post %}
 			<div class="card mb-4">
-				<a href="{% url 'cs50game:post' featured_post.id %}"><img class="card-img-top" src="{{ featured_post.coverpic }}" alt=""></a>
+				<a href="{% url 'cs50game:post' featured_post.slug %}"><img class="card-img-top" src="{{ featured_post.coverpic }}" alt=""></a>
 				<div class="card-body">
 					<div class="small text-muted">{{ featured_post.date }}</div>
 					<h2 class="card-title">{{ featured_post.title }}</h2>
 					<p class="card-text">{{ featured_post.blurb }}</p>
-					<a class="btn btn-primary" href="{% url 'cs50game:post' featured_post.id %}">Read more</a>
+					<a class="btn btn-primary" href="{% url 'cs50game:post' featured_post.slug %}">Read more</a>
 					{% if user.is_superuser %}
 						<a class="btn btn-success" href="{% url 'cs50game:edit_post' featured_post.slug %}">Edit</a>
 						<a class="btn btn-danger" href="{% url 'cs50game:delete_post' featured_post.slug %}">Delete</a>	
@@ -92,12 +92,12 @@
 				<div class="col-lg-6">
 					<!-- Blog post -->
 					<div class="card mb-4">
-						<a href="{% url 'cs50game:post' post.id %}"><img class="card-img-top" src="{{ post.coverpic }}" alt=""></a>
+						<a href="{% url 'cs50game:post' post.slug %}"><img class="card-img-top" src="{{ post.coverpic }}" alt=""></a>
 						<div class="card-body">
 							<div class="small text-muted">{{ post.date }}</div>
 							<h2 class="card-title h4">{{ post.title }}</h2>
 							<p class="card-text">{{ post.blurb }}</p>
-							<a class="btn btn-primary" href="{% url 'cs50game:post' post.id %}">Read more</a>
+							<a class="btn btn-primary" href="{% url 'cs50game:post' post.slug %}">Read more</a>
 							{% if user.is_superuser %}
 								<a class="btn btn-success" href="{% url 'cs50game:edit_post' post.slug %}">Edit</a>
 								<a class="btn btn-danger" href="{% url 'cs50game:delete_post' post.slug %}">Delete</a>	
