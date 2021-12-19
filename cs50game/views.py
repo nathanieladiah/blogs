@@ -12,6 +12,7 @@ from . forms import PostForm
 # Create your views here.
 def index(request):
 	# featured_count = Cs50gPost.objects.filter(featured=True).count()
+	# need to check if there are any posts first
 	featured_posts = Cs50gPost.objects.filter(featured=True)
 	count = len(featured_posts)
 	featured_post = featured_posts[randint(0, count-1)]
@@ -45,37 +46,6 @@ def random(request):
 
 	return HttpResponseRedirect(reverse("cs50game:post", args=(random_post.id,)))
 
-# @user_passes_test(lambda u: u.is_superuser)
-# def new_post(request):
-# 	if request.method == 'POST':
-# 		title = request.POST['title']
-# 		subtitle = request.POST['subtitle']
-# 		blurb = request.POST['blurb']
-# 		body = request.POST['body']
-# 		coverpic = request.POST['coverpic']
-# 		author = request.user
-
-# 		# if request.POST['featured']:
-# 		# 	featured = request.POST['featured']
-# 		# 	print(featured)
-
-# 		try:
-# 			featured = request.POST['featured']
-# 		except:
-# 			featured = False
-
-# 		# print(featured)
-
-# 		post = Cs50gPost(title=title, subtitle=subtitle, body=body, 
-# 			author=author, blurb=blurb, coverpic=coverpic)
-# 		post.save()
-# 		if featured:
-# 			post.featured = True
-# 			post.save()
-# 		return HttpResponseRedirect(reverse('cs50game:index'))
-
-# 	return render(request, "cs50game/new_post.html")
-
 @user_passes_test(lambda u: u.is_superuser)
 def new_post(request):
 	form = PostForm()
@@ -86,6 +56,21 @@ def new_post(request):
 			post = form.save(commit=False)
 			post.author = request.user
 			post.save()
+
+			return redirect('cs50game:index')
+
+	context = {'form': form}
+	return render(request, 'cs50game/post_form.html', context)
+
+@user_passes_test(lambda u: u.is_superuser)
+def edit_post(request, slug):
+	post = Cs50gPost.objects.get(slug=slug)
+	form = PostForm(instance=post)
+
+	if request.method == 'POST':
+		form = PostForm(request.POST, instance=post)
+		if form.is_valid:
+			form.save()
 
 			return redirect('cs50game:index')
 

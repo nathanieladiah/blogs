@@ -6,6 +6,9 @@ urlpatterns = [
 	path("", views.index, name="index"),
 	path("post/<int:post_id>", views.post, name="post"),
 	path("random", views.random, name="random"),
+
+	# CRUD Paths
 	path("new", views.new_post, name="new_post"),
 	path("comment/<int:post_id>", views.comment, name="comment"),
+	path("edit/<slug:slug>/", views.edit_post, name="edit_post"),
 ]
