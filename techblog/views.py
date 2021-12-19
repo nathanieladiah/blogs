@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from random import randint
+from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import TechPost
@@ -29,3 +30,10 @@ def post(request, slug):
 
 	context={'post': post}
 	return render(request, 'techblog/post.html', context)
+
+def random(request):
+	count = TechPost.objects.count()
+	random_post = TechPost.objects.all()[randint(0, count-1)]
+
+	return redirect('techblog:post', random_post.slug)
+	# return HttpResponseRedirect(reverse("cs50game:post", args=(random_post.slug,)))
