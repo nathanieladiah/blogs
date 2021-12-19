@@ -37,3 +37,23 @@ def random(request):
 
 	return redirect('techblog:post', random_post.slug)
 	# return HttpResponseRedirect(reverse("cs50game:post", args=(random_post.slug,)))
+
+def search(request):
+	query = request.GET.get('q')
+	if query:
+		results = TechPost.objects.filter(title__icontains=query)
+	else:
+		results = TechPost.objects.all()
+
+	paginator = Paginator(results, 6)
+	page = request.GET.get('page')
+
+	try:
+		posts = paginator.page(page)
+	except PageNotAnInteger:
+		posts = paginator.page(1)
+	except EmptyPage:
+		posts = paginator.page(paginator.num_pages)
+	
+	context = {'posts': posts}
+	return render(request, 'techblog/search_results.html', context)
