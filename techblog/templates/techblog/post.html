@@ -28,7 +28,8 @@
 		<figure class="mb-4"><img class="img-fluid rounded" src="{{ post.coverpic }}" alt=""></figure>
 		<!-- Post content -->
 		<section class="mb-5" id="post-body">
-			{{ post.body | markdown |safe}}
+			 <!-- post.body | markdown |safe -->
+			 {{post.body|safe}}
 		</section>
 	</article>
 {% endblock %}

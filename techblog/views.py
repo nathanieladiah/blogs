@@ -1,8 +1,11 @@
 from random import randint
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 from .models import TechPost
+from .forms import TechPostForm
+
 # Create your views here.
 def index(request):
 	return render(request, 'techblog/index.html')
@@ -78,3 +81,22 @@ def categories(request, category):
 
 	context = {'posts': posts, 'query': category}
 	return render(request, 'techblog/search_results.html', context)
+
+
+# CRUD VIEWS
+
+@user_passes_test(lambda u: u.is_superuser)
+def new_post(request):
+	form = TechPostForm()
+
+	if request.method == 'POST':
+		form = TechPostForm(request.POST)
+		if form.is_valid:
+			post = form.save(commit=False)
+			post.author = request.user
+			post.save()
+
+			return redirect('techblog:index')
+
+	context = {'form': form}
+	return render(request, 'techblog/post_form.html', context)

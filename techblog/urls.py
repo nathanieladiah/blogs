@@ -10,4 +10,7 @@ urlpatterns = [
 	# Search paths
 	path("search/", views.search, name="search"),
 	path("categories/<str:category>/", views.categories, name="categories"),
+
+	# CRUD paths
+	path("new/", views.new_post, name="new_post"),
 ]

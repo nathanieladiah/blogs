@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from ckeditor.fields import RichTextField
 
 class TechTag(models.Model):
 	name = models.CharField(max_length=200)
@@ -11,7 +12,8 @@ class TechTag(models.Model):
 class TechPost(models.Model):
 	title = models.CharField(max_length=120)
 	subtitle = models.CharField(blank=True, null=True, max_length=200)
-	body = models.TextField()
+	# body = models.TextField()
+	body = RichTextField(null=True, blank=True)
 	created = models.DateTimeField(auto_now_add=True)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	coverpic = models.URLField(blank=True, null=True)
