@@ -44,7 +44,7 @@ def random(request):
 	count = Cs50gPost.objects.count()
 	random_post = Cs50gPost.objects.all()[randint(0, count-1)]
 
-	return HttpResponseRedirect(reverse("cs50game:post", args=(random_post.id,)))
+	return HttpResponseRedirect(reverse("cs50game:post", args=(random_post.slug,)))
 
 @user_passes_test(lambda u: u.is_superuser)
 def new_post(request):
