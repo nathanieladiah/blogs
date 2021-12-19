@@ -36,6 +36,8 @@
 						</div>
 					</div>
 				</div>
+			{% empty %}
+				<h3 class="text-center">No posts in {{category}} category.</h3>
 			{% endfor %}
 		</div>
 
