@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'ckeditor',
-    'django_filters',
 
     # My apps
     'portfolio',
