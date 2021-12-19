@@ -6,6 +6,7 @@ urlpatterns = [
 	path("", views.index, name="index"),
 	path("post/<slug:slug>/", views.post, name="post"),
 	path("random", views.random, name="random"),
+	path("categories/<str:category>/", views.categories, name="categories"),
 
 	# CRUD Paths
 	path("new", views.new_post, name="new_post"),

@@ -18,7 +18,7 @@
 				<!-- <a class="badge bg-secondary text-decoration-none link-light" href="#">Web Design</a>
 				<a class="badge bg-secondary text-decoration-none link-light" href="#">Freebies</a> -->
 				{% for category in post.categories.all %}
-					<a class="badge bg-secondary text-decoration-none link-light" href="#">{{ category.name }}</a>
+					<a class="badge bg-secondary text-decoration-none link-light" href="{% url 'cs50game:categories' category.name %}">{{ category.name }}</a>
 				{% endfor %}
 				{% if user.is_superuser %}
 				<div class="post-buttons mt-3">

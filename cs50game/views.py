@@ -46,6 +46,12 @@ def random(request):
 
 	return HttpResponseRedirect(reverse("cs50game:post", args=(random_post.slug,)))
 
+def categories(request, category):
+	posts = Cs50gPost.objects.filter(categories__name=category)
+
+	context = {'posts': posts, 'category': category}
+	return render(request, 'cs50game/categories.html', context)
+
 @user_passes_test(lambda u: u.is_superuser)
 def new_post(request):
 	form = PostForm()
