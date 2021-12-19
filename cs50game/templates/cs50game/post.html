@@ -17,6 +17,10 @@
 				<!-- Post categories -->
 				<!-- <a class="badge bg-secondary text-decoration-none link-light" href="#">Web Design</a>
 				<a class="badge bg-secondary text-decoration-none link-light" href="#">Freebies</a> -->
+				{% if user.is_superuser %}
+					<a class="btn btn-success" href="{% url 'cs50game:edit_post' post.slug %}">Edit</a>
+					<a class="btn btn-danger" href="{% url 'cs50game:delete_post' post.slug %}">Delete</a>	
+				{% endif %}	
 			</header>
 			<!-- Preview image figure -->
 			<figure class="mb-4"><img class="img-fluid rounded" src="{{ post.coverpic }}" alt=""></figure>
@@ -37,7 +41,7 @@
 			<div class="card bg-light">
 				<div class="card-body">
 					<!-- comment form -->
-					<form class="mb-4" method="post" action="{% url 'cs50game:comment' post.id %}">
+					<form class="mb-4" method="post" action="{% url 'cs50game:comment' post.slug %}">
 						{% csrf_token %}
 						<textarea id="new-comment-body" name="body" class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea>
 						<div class="row">

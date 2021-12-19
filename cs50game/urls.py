@@ -9,7 +9,7 @@ urlpatterns = [
 
 	# CRUD Paths
 	path("new", views.new_post, name="new_post"),
-	path("comment/<int:post_id>", views.comment, name="comment"),
+	path("comment/<slug:slug>", views.comment, name="comment"),
 	path("edit/<slug:slug>/", views.edit_post, name="edit_post"),
 	path("delete/<slug:slug>/", views.delete_post, name="delete_post"),
 ]

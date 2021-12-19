@@ -89,12 +89,12 @@ def delete_post(request, slug):
 	return render(request, 'cs50game/delete.html', context)
 
 @login_required
-def comment(request, post_id):
+def comment(request, slug):
 	if request.method == 'POST':
 		user = request.user
 		body = request.POST['body']
-		post = Cs50gPost.objects.get(pk=post_id)
+		post = Cs50gPost.objects.get(slug=slug)
 
 		comment = Comment(user=user, body=body, post=post)
 		comment.save() 
-		return HttpResponseRedirect(reverse('cs50game:post', args=(post_id, )))
+		return HttpResponseRedirect(reverse('cs50game:post', args=(slug, )))
