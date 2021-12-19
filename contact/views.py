@@ -38,14 +38,16 @@ def contact(request):
 			'message': message,
 		})
 
+		contact = Contact(name=name, email=email, phone=phone, message=message)
+		contact.save()
+
 		email = EmailMessage(
 			request.POST['subject'],
 			template,
 			settings.EMAIL_HOST_USER,
 			[settings.EMAIL_HOST_USER]
 		)
-		contact = Contact(name=name, email=email, phone=phone, message=message)
-		contact.save() 	
+		 	
 
 		email.fail_silently=False
 		email.send()
