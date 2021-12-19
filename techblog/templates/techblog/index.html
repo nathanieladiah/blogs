@@ -21,7 +21,7 @@
 				<a class="btn btn-primary" href="{% url 'techblog:post' featured_post.slug %}">Read more</a>
 				{% if user.is_superuser %}
 					<a class="btn btn-success" href="{% url 'techblog:edit_post' featured_post.slug %}">Edit</a>
-					<a class="btn btn-danger" href="#">Delete</a>	
+					<a class="btn btn-danger" href="{% url 'techblog:delete_post' featured_post.slug %}">Delete</a>	
 				{% endif %}
 			</div>
 		</div>
@@ -41,7 +41,7 @@
 						<a class="btn btn-primary" href="{% url 'techblog:post' post.slug %}">Read more</a>
 						{% if user.is_superuser %}
 							<a class="btn btn-success" href="{% url 'techblog:edit_post' post.slug %}">Edit</a>
-							<a class="btn btn-danger" href="#">Delete</a>	
+							<a class="btn btn-danger" href="{% url 'techblog:delete_post' post.slug %}">Delete</a>	
 						{% endif %}
 					</div>
 				</div>

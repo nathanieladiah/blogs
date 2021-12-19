@@ -13,8 +13,9 @@ def index(request):
 
 def index(request):
 	# In this blog 1 post will be featured at a time
-	featured_post = TechPost.objects.filter(featured=True).first()
+	featured_post = TechPost.objects.filter(featured=True).order_by('-created').first()
 
+	# Should I take out the filtered post from here
 	posts = TechPost.objects.all().order_by('-created')
 	paginator = Paginator(posts, 4)
 	page = request.GET.get('page')
@@ -116,3 +117,15 @@ def edit_post(request, slug):
 
 	context = {'form': form}
 	return render(request, 'techblog/post_form.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def delete_post(request, slug):
+	post = TechPost.objects.get(slug=slug)
+
+	if request.method == 'POST':
+		post.delete()
+		return redirect('techblog:index')
+
+	context = {'item': post}
+	return render(request, 'techblog/delete.html', context)

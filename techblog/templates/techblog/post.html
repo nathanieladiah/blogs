@@ -20,7 +20,7 @@
 			{% if user.is_superuser %}
 			<div class="post-buttons mt-3">
 				<a class="btn btn-success btn-sm" href="{% url 'techblog:edit_post' post.slug %}">Edit</a>
-				<a class="btn btn-danger btn-sm" href="#">Delete</a>	
+				<a class="btn btn-danger btn-sm" href="{% url 'techblog:delete_post' post.slug %}">Delete</a>	
 			</div>
 			{% endif %}	
 		</header>
