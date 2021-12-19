@@ -52,6 +52,19 @@ def categories(request, category):
 	context = {'posts': posts, 'category': category}
 	return render(request, 'cs50game/categories.html', context)
 
+def search(request):
+	query = request.GET.get('q')
+	if query:
+		# There was a query entered.
+		results = Cs50gPost.objects.filter(title__icontains=query)
+	else:
+		# No query entered, return all objects
+		results = Cs50gPost.objects.all()
+	
+	context = {'posts': results}
+
+	return render(request, 'cs50game/search_results.html', context)
+
 @user_passes_test(lambda u: u.is_superuser)
 def new_post(request):
 	form = PostForm()
