@@ -23,4 +23,5 @@ urlpatterns = [
     path('auth/', include("authapp.urls")),
     path('cs50game/', include("cs50game.urls")),
     path('contact/', include('contact.urls')),
+    path('techblog/', include('techblog.urls')),
 ]

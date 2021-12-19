@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'authapp',
     'cs50game',
     'contact',
+    'techblog'
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
