@@ -17,9 +17,14 @@
 				<!-- Post categories -->
 				<!-- <a class="badge bg-secondary text-decoration-none link-light" href="#">Web Design</a>
 				<a class="badge bg-secondary text-decoration-none link-light" href="#">Freebies</a> -->
+				{% for category in post.categories.all %}
+					<a class="badge bg-secondary text-decoration-none link-light" href="#">{{ category.name }}</a>
+				{% endfor %}
 				{% if user.is_superuser %}
-					<a class="btn btn-success" href="{% url 'cs50game:edit_post' post.slug %}">Edit</a>
-					<a class="btn btn-danger" href="{% url 'cs50game:delete_post' post.slug %}">Delete</a>	
+				<div class="post-buttons mt-3">
+					<a class="btn btn-success btn-sm" href="{% url 'cs50game:edit_post' post.slug %}">Edit</a>
+					<a class="btn btn-danger btn-sm" href="{% url 'cs50game:delete_post' post.slug %}">Delete</a>	
+				</div>
 				{% endif %}	
 			</header>
 			<!-- Preview image figure -->

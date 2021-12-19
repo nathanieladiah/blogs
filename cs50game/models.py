@@ -7,6 +7,12 @@ from django.utils.text import slugify
 # Each blog post must have a title, a subtitle, author, post date, and the
 # post content itself
 
+class Category(models.Model):
+	name = models.CharField(max_length=200)
+
+	def __str__(self):
+		return self.name
+
 class Cs50gPost(models.Model):
 	title = models.CharField(max_length=120)
 	subtitle = models.CharField(blank=True, null=True, max_length=200)
@@ -16,6 +22,7 @@ class Cs50gPost(models.Model):
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	coverpic = models.URLField(blank=True, null=True)
 	featured = models.BooleanField(default=False)
+	categories = models.ManyToManyField(Category, null=True, blank=True)
 	slug = models.SlugField(null=True, blank=True)
 
 	def __str__(self):
