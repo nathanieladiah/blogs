@@ -9,4 +9,5 @@ urlpatterns = [
 
 	# Search paths
 	path("search/", views.search, name="search"),
+	path("categories/<str:category>/", views.categories, name="categories"),
 ]

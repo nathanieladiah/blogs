@@ -7,6 +7,7 @@ from .models import TechPost
 def index(request):
 	return render(request, 'techblog/index.html')
 
+
 def index(request):
 	# In this blog 1 post will be featured at a time
 	featured_post = TechPost.objects.filter(featured=True).first()
@@ -25,11 +26,13 @@ def index(request):
 	context = {'posts': posts, 'featured_post': featured_post}
 	return render(request, 'techblog/index.html', context)
 
+
 def post(request, slug):
 	post = TechPost.objects.get(slug=slug)
 
 	context={'post': post}
 	return render(request, 'techblog/post.html', context)
+
 
 def random(request):
 	count = TechPost.objects.count()
@@ -37,6 +40,7 @@ def random(request):
 
 	return redirect('techblog:post', random_post.slug)
 	# return HttpResponseRedirect(reverse("cs50game:post", args=(random_post.slug,)))
+
 
 def search(request):
 	query = request.GET.get('q')
@@ -56,4 +60,21 @@ def search(request):
 		posts = paginator.page(paginator.num_pages)
 	
 	context = {'posts': posts, 'query':query}
+	return render(request, 'techblog/search_results.html', context)
+
+
+def categories(request, category):
+	posts = TechPost.objects.filter(tech_tags__name=category)
+
+	paginator = Paginator(posts, 6)
+	page = request.GET.get('page')
+
+	try:
+		posts = paginator.page(page)
+	except PageNotAnInteger:
+		posts = paginator.page(1)
+	except EmptyPage:
+		posts = paginator.page(paginator.num_pages)
+
+	context = {'posts': posts, 'query': category}
 	return render(request, 'techblog/search_results.html', context)

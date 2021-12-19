@@ -73,7 +73,7 @@
 					<div class="card-body">
 						<div class="row">
 							{% for tag in tech_tags %}
-								<a class="col-sm-6" href="#">{{ tag.name }}</a>
+								<a class="col-sm-6" href="{% url 'techblog:categories' tag.name %}">{{ tag.name }}</a>
 							{% endfor %}
 						</div>
 					</div>
