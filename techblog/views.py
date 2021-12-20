@@ -113,7 +113,7 @@ def edit_post(request, slug):
 		if form.is_valid:
 			form.save()
 
-			return redirect('techblog:index')
+			return redirect('techblog:post', slug)
 
 	context = {'form': form}
 	return render(request, 'techblog/post_form.html', context)

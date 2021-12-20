@@ -111,7 +111,7 @@ def edit_post(request, slug):
 		if form.is_valid:
 			form.save()
 
-			return redirect('cs50game:index')
+			return redirect('cs50game:post', slug)
 
 	context = {'form': form}
 	return render(request, 'cs50game/post_form.html', context)
