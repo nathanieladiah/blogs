@@ -17,28 +17,30 @@
 	{% endif %}
 
 	<div class="row mb-2">
-		{% for post in featured %}
-		<div class="col-md-6">
-			<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-				<div class="col p-4 d-flex flex-column postion-static">
-					{% for tag in post.tags.all %}
-						<span><strong class="mb-2 text-primary tag tag-{{tag}}">{{ tag }}</strong></span>
-					{% endfor %}
-					<h3 class="mb-0">{{ post.headline }}</h3>
-					<div class="mb-1 text-muted">{{ post.created }}</div>
-					<p class="card-text mb-auto">
-						{{ post.sub_headline }}
-					</p>
-					<a href="{% url 'visitors:post' post.slug %}" class="stretched-link">Continue reading</a>
-				</div>
-				<div class="col-auto d-none d-lg-block">
-					<!-- <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-					<img class="img-fluid" src="{{ post.thumbnail }}">
-				</div>
 
+		{% for post in featured %}
+			<div class="col-md-6">
+				<div class="card mb-3" style="max-width: 540px;">
+					<div class="row g-0">
+						<div class="col-md-8">
+							<div class="card-body">
+								{% for tag in post.tags.all %}
+									<span><strong class="mb-2 text-primary tag tag-{{tag}}">{{tag}}</strong></span>
+								{% endfor %}
+								<h3 class="mb-0">{{post.headline}}</h3>
+								<div class="mb-1 text-muted">{{post.created}}</div>
+								<p class="card-text mb-auto">{{post.sub_headline}}</p>
+								<a href="{% url 'visitors:post' post.slug %}" class="stretched-link">Continue reading</a>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<img src="{{post.thumbnail}}" class="img-fluid rounded-end" alt="...">
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
 		{% endfor %}
+
 	</div>
 {% endblock %}
 
@@ -52,6 +54,12 @@
 			<img class="img-fluid" src="{{post.thumbnail}}">
 			<h2 class="blog-post-title">{{post.headline}}</h2>
 			<p class="blog-post-meta">{{post.created}} by <a href="{% url 'visitors:post' post.slug %}">Nathaniel</a></p>
+			{% if user.is_superuser %}
+				<div class="post-buttons">
+					<a class="btn btn-sm btn-success" href="{% url 'visitors:update_post' post.slug %}">Edit</a>
+					<a class="btn btn-sm btn-danger" href="#">Delete</a>	
+				</div>
+			{% endif %}
 			{{post.body|safe}}
 		</article>
 	{% empty %}

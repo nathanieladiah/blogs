@@ -85,27 +85,28 @@ def createPost(request):
 	return render(request, 'visitors/post_form.html', context)
 
 
-# @login_required(login_url='index')
-# def updatePost(request, slug):
-# 	post = Post.objects.get(slug=slug)
-# 	form = PostForm(instance=post)
+@user_passes_test(lambda u: u.is_superuser)
+def updatePost(request, slug):
+	post = VisitorPost.objects.get(slug=slug)
+	form = PostForm(instance=post)
 
-# 	if request.method == 'POST':
-# 		form = PostForm(request.POST, instance=post)
-# 		if form.is_valid:
-# 			form.save()
-# 			return redirect('index')
+	if request.method == 'POST':
+		form = PostForm(request.POST, instance=post)
+		if form.is_valid:
+			form.save()
 
-# 	context = {'form': form}
-# 	return render(request, 'blog/post_form.html', context)
+			return redirect('visitors:post', slug)
 
-# @login_required(login_url='index')
-# def deletePost(request, slug):
-# 	post = Post.objects.get(slug=slug)
+	context = {'form': form}
+	return render(request, 'visitors/post_form.html', context)
 
-# 	if request.method == 'POST':
-# 		post.delete()
-# 		return redirect('index')
+@user_passes_test(lambda u: u.is_superuser)
+def deletePost(request, slug):
+	post = VisitorPost.objects.get(slug=slug)
+
+	if request.method == 'POST':
+		post.delete()
+		return redirect('visitors:index')
 	
-# 	context = {'item': post}
-# 	return render(request, 'blog/delete.html', context)
+	context = {'item': post}
+	return render(request, 'visitors/delete.html', context)
