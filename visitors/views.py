@@ -40,11 +40,12 @@ def index(request):
 
 	return render(request, 'visitors/index.html', context)
 
-# def post(request, slug):
-# 	post = Post.objects.get(slug=slug)
 
-# 	context = {'post': post}
-# 	return render(request, 'blog/post.html', context)
+def post(request, slug):
+	post = VisitorPost.objects.get(slug=slug)
+
+	context = {'post': post}
+	return render(request, 'visitors/post.html', context)
 
 # def posts(request):
 # 	posts = Post.objects.all().order_by('-created')

@@ -1,0 +1,14 @@
+{% extends 'visitors/main.html' %}
+
+{% load static %}
+
+{% block title %}{{post.headline}}{% endblock %}
+
+{% block main %}
+	<article class="blog-post">
+		<img class="img-fluid" src="{{post.thumbnail}}">
+		<h2 class="blog-post-title">{{post.headline}}</h2>
+		<p class="blog-post-meta">{{post.created}} by <a href="#">Nathaniel</a></p>
+		{{post.body|safe }}
+	</article>
+{% endblock %}
