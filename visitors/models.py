@@ -14,6 +14,7 @@ class VisitorPost(models.Model):
 	headline = models.CharField(max_length=200)
 	sub_headline = models.CharField(max_length=200, null=True, blank=True)
 	thumbnail = models.URLField(blank=True, null=True)
+	coverpic = models.URLField(blank=True, null=True)
 	body = RichTextField(null=True, blank=True)
 	created = models.DateTimeField(auto_now_add=True)
 	featured = models.BooleanField(default=False)

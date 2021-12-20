@@ -6,7 +6,7 @@
 
 {% block main %}
 	<article class="blog-post">
-		<img class="img-fluid" src="{{post.thumbnail}}">
+		<img class="img-fluid" src="{{post.coverpic}}">
 		<h2 class="blog-post-title">{{post.headline}}</h2>
 		<p class="blog-post-meta">{{post.created}} by <a href="#">Nathaniel</a></p>
 		{{post.body|safe }}

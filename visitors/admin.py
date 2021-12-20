@@ -8,7 +8,7 @@ from . models import VisitorTag, VisitorPost
 class PostAdmin(admin.ModelAdmin):
 	list_display = ('headline', 'featured', 'top_featured', 'created')
 	list_filter = ('featured', 'top_featured', 'tags')
-	fields = ('headline', 'sub_headline', 'thumbnail',
+	fields = ('headline', 'sub_headline', ('thumbnail', 'coverpic'),
 		'body', ('featured', 'top_featured'), 'slug', 'tags'
 	)
 	filter_horizontal = ('tags',)
