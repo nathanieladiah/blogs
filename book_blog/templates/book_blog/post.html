@@ -20,8 +20,8 @@
 					<div class="mt-3">
 						{% if user.is_superuser %}
 							<div class="post-buttons">
-								<button type="button" class="btn btn-sm btn-primary"><a href="{% url 'book:edit_post' post.slug %}">Edit</a></button>
-								<button type="button" class="btn btn-sm btn-danger"><a href="{% url 'book:delete_post' post.slug %}">Delete</a></button>
+								<button type="button" class="btn btn-sm btn-primary p-1"><a href="{% url 'book:edit_post' post.slug %}">Edit</a></button>
+								<button type="button" class="btn btn-sm btn-danger p-1"><a href="{% url 'book:delete_post' post.slug %}">Delete</a></button>
 							</div>
 						{% endif %}
 					</div>
