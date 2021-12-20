@@ -1,10 +1,10 @@
 import random
 from django.shortcuts import render, redirect
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import VisitorPost
-# from .forms import PostForm
+from .forms import PostForm
 from .filters import PostFilter
 
 # Create your views here.
@@ -68,19 +68,22 @@ def posts(request):
 
 # CRUD VIEWS
 
-# @login_required(login_url='index')
-# def createPost(request):
-# 	form = PostForm()
+@user_passes_test(lambda u: u.is_superuser)
+def createPost(request):
+	form = PostForm()
 
-# 	if request.method == 'POST':
-# 		form = PostForm(request.POST)
-# 		if form.is_valid:
-# 			form.save()
+	if request.method == 'POST':
+		form = PostForm(request.POST)
+		if form.is_valid:
+			post = form.save(commit=False)
+			post.author = request.user
+			post.save()
 
-# 			return redirect('index')
+			return redirect('visitors:index')
 
-# 	context = {'form': form}
-# 	return render(request, 'blog/post_form.html', context)
+	context = {'form': form}
+	return render(request, 'visitors/post_form.html', context)
+
 
 # @login_required(login_url='index')
 # def updatePost(request, slug):
