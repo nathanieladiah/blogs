@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.fields import TextField
 from django.utils.text import slugify
-from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -14,7 +14,7 @@ class Post(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	coverpic = models.URLField(blank=True, null=True)
-	body = RichTextField(null=True, blank=True)
+	body = TextField()
 	slug = models.SlugField(null=True, blank=True)
 
 	def __str__(self):

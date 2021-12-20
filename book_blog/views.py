@@ -76,7 +76,7 @@ def editPost(request, slug):
 		form = PostForm(request.POST, instance=post)
 		if form.is_valid:
 			form.save()
-			return redirect('book:index')
+			return redirect('book:post', slug)
 
 	context = {'form': form}
 	return render(request, 'book_blog/post_form.html', context)
