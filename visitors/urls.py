@@ -5,7 +5,7 @@ from . import views
 app_name = 'visitors'
 urlpatterns = [
 	path('', views.index, name="index"),
-	# path('posts/', views.posts, name="posts"),
+	path('posts/', views.posts, name="posts"),
 	path('post/<slug:slug>/', views.post, name="post"),
 
 	# CRUD PATHS

@@ -5,7 +5,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import VisitorPost
 # from .forms import PostForm
-# from .filters import PostFilter
+from .filters import PostFilter
 
 # Create your views here.
 def index(request):
@@ -47,25 +47,26 @@ def post(request, slug):
 	context = {'post': post}
 	return render(request, 'visitors/post.html', context)
 
-# def posts(request):
-# 	posts = Post.objects.all().order_by('-created')
-# 	myFilter = PostFilter(request.GET, queryset=posts)
-# 	posts = myFilter.qs
 
-# 	page = request.GET.get('page')
-# 	paginator = Paginator(posts, 10)
+def posts(request):
+	posts = VisitorPost.objects.all().order_by('-created')
+	myFilter = PostFilter(request.GET, queryset=posts)
+	posts = myFilter.qs
 
-# 	try:
-# 		posts = paginator.page(page)
-# 	except PageNotAnInteger:
-# 		posts = paginator.page(1)
-# 	except EmptyPage:
-# 		posts = paginator.page(paginator.num_pages)
+	page = request.GET.get('page')
+	paginator = Paginator(posts, 10)
 
-# 	context = {'posts': posts, 'myFilter': myFilter}
-# 	return render(request, 'blog/posts.html', context)
+	try:
+		posts = paginator.page(page)
+	except PageNotAnInteger:
+		posts = paginator.page(1)
+	except EmptyPage:
+		posts = paginator.page(paginator.num_pages)
 
-# # CRUD VIEWS
+	context = {'posts': posts, 'myFilter': myFilter}
+	return render(request, 'visitors/posts.html', context)
+
+# CRUD VIEWS
 
 # @login_required(login_url='index')
 # def createPost(request):
