@@ -24,4 +24,5 @@ urlpatterns = [
     path('cs50game/', include("cs50game.urls")),
     path('contact/', include('contact.urls')),
     path('techblog/', include('techblog.urls')),
+    path('visitors/', include("visitors.urls")),
 ]
