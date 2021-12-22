@@ -66,6 +66,23 @@ def posts(request):
 	context = {'posts': posts, 'myFilter': myFilter}
 	return render(request, 'visitors/posts.html', context)
 
+
+def categories(request, category):
+	posts = VisitorPost.objects.filter(tags__name=category)
+
+	page = request.GET.get('page')
+	paginator = Paginator(posts, 10)
+
+	try:
+		posts = paginator.page(page)
+	except PageNotAnInteger:
+		posts = paginator.page(1)
+	except EmptyPage:
+		posts = paginator.page(paginator.num_pages)
+
+	context = {'posts': posts, 'category': category}
+	return render(request, 'visitors/categories.html', context)
+
 # CRUD VIEWS
 
 @user_passes_test(lambda u: u.is_superuser)
