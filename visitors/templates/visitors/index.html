@@ -11,7 +11,7 @@
 				<p class="lead mb-0"><a href="{% url 'visitors:post' top_featured.slug %}" class="text-white fw-bold">Continue reading...</a></p>
 			</div>
 			<div class="col-md-6 px-0">
-				<img class="img-fluid" src="{{ top_featured.thumbnail }}">
+				<img class="img-fluid" src="{{ top_featured.coverpic }}">
 			</div>
 		</div>
 	{% endif %}
@@ -51,9 +51,13 @@
 	
 	{% for post in posts %}
 		<article class="blog-post my-5">
-			<img class="img-fluid" src="{{post.coverpic}}">
-			<h2 class="blog-post-title">{{post.headline}}</h2>
-			<p class="blog-post-meta">{{post.created}} by <a href="{% url 'visitors:post' post.slug %}">Nathaniel</a></p>
+			<a href="{% url 'visitors:post' post.slug %}"><img class="img-fluid" src="{{post.coverpic}}"></a>
+			<h2 class="blog-post-title">
+				<a class="text-decoration-none text-reset" href="{% url 'visitors:post' post.slug %}">
+				{{post.headline}}
+				</a>
+			</h2>
+			<p class="blog-post-meta">{{post.created}} by <a href="#">Nathaniel</a></p>
 			{% if user.is_superuser %}
 				<div class="post-buttons">
 					<a class="btn btn-sm btn-success" href="{% url 'visitors:update_post' post.slug %}">Edit</a>
