@@ -91,6 +91,7 @@ TEMPLATES = [
                 # custom context processors
                 'cs50game.context_processors.categories_processor',
                 'techblog.context_processors.tech_tags_loader',
+                'visitors.context_processors.visitor_tags_loader',
             ],
         },
     },

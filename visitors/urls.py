@@ -6,6 +6,7 @@ app_name = 'visitors'
 urlpatterns = [
 	path('', views.index, name="index"),
 	path('posts/', views.posts, name="posts"),
+	path('categories/<str:category>/', views.categories, name="categories"),
 	path('post/<slug:slug>/', views.post, name="post"),
 
 	# CRUD PATHS
