@@ -6,15 +6,7 @@
 {% block title %}{{category}}{% endblock %}
 
 {% block main %}
-<style>
-	#div_id_tags > div {
-		max-height: 100px;
-		overflow: scroll;
-		border: 1px solid #888;
-		padding: 5px;
-		border-radius: 5px;
-	}
-</style>
+	
 <section class="container-fluid">
 	<h1>{{category}}</h1>
 	<div class="row mb-2 row-cols-1 row-cols-md-2 g-4">
@@ -27,7 +19,6 @@
 						<span><strong class="mb-2 text-primary tag tag-{{tag}}">{{ tag }}</strong></span>
 					{% endfor %}
 					</div>
-					<!-- <img src="{{post.thumbnail}}" class="card-img img-fluid" alt=""> -->
 					<div class="card-body">
 						<h3 class="mb-0">{{post.headline}}</h3>
 						<div class="mb-1 text-muted">{{ post.created }}</div>
