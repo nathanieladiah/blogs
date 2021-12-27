@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.fields import TextField
@@ -11,7 +12,8 @@ from django.utils.text import slugify
 class Post(models.Model):
 	title = models.CharField(max_length=120)
 	subtitle = models.CharField(max_length=200)
-	created = models.DateTimeField(auto_now_add=True)
+	# created = models.DateTimeField(auto_now_add=True)
+	created = models.DateTimeField(default=datetime.now)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	coverpic = models.URLField(blank=True, null=True)
 	body = TextField()
