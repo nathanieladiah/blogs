@@ -25,7 +25,7 @@ The setback is that I don't have a credit card to use a paid service.
 
 # Installation
 
-![Install demo video](https://i.imgur.com/0JC9qMY.mp4)
+<video src='https://i.imgur.com/0JC9qMY.mp4' />
 
 To use this project, first clone the repo on your device using the command below:
 
